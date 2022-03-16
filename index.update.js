@@ -99,7 +99,15 @@ db.collection('dishes').get().then(res => {
 
     res.docs.forEach(doc => {
         data.push(doc.data())
+
     });
 
     update(data);
+
+    // // Simulate Update/Remove with D3 interval
+    // d3.interval(() => {
+    //data[0].orders += 50 // get first element and increase orders
+    //data.pop()// removes last element from array
+    //update(data);
+    // }, 3000)
 })
