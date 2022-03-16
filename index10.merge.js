@@ -136,10 +136,13 @@ db.collection('dishes').onSnapshot((res) => {
 
 // Transition Logic
 
-// Starting Bar Values
-// Y = graphHeight
-// height = 0
+            // Starting Bar Values
+            // Y = graphHeight
+            // height = 0
 
-// Ending Bar Values
-// Y = y(d.orders)
-// height = graphHeigth - y(d.orders)
+            // Ending Bar Values
+            // Y = y(d.orders)
+            // height = graphHeigth - y(d.orders)
+
+// TWEENS
+
