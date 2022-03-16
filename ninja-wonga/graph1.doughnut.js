@@ -18,25 +18,14 @@ const arcPath = d3.arc()
     .outerRadius(dims.radius) // radius of the pie chart
     .innerRadius(dims.radius / 2)
 
-// ordinal scale
-const colorScale = d3.scaleOrdinal(d3['schemeSet3']) // output range
+
 
 // UPDATE
 const update = (data) => {
-    // update color scale domain
-    colorScale.domain(data.map(item => item.name))  // generate an array to pass into domain
 
 
-    // join enhance (pie) data to path elements
     const paths = graph.selectAll('path')
         .data(pie(data)) // pass data into pie generator
-
-    paths
-        .attr('class', 'arc')
-        .attr('d', arcPath) //  generate string as path 
-        .attr('stroke', '#FFF')
-        .attr('stroke-width', '3px')
-        .attr('fill', d => colorScale(d.data.name))
 
     paths.enter()
         .append('path')
@@ -44,9 +33,6 @@ const update = (data) => {
         .attr('d', arcPath) //  generate string as path 
         .attr('stroke', '#FFF')
         .attr('stroke-width', '3px')
-        .attr('fill', d => colorScale(d.data.name))
-
-    paths.exit().remove()
 
 }
 
