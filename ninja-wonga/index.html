@@ -1,0 +1,83 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninga Wonga</title>
+    <style>
+        h2,
+        p {
+            margin: 10x 0;
+        }
+
+        header {
+            margin-bottom: 40px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+</head>
+
+<body class="indigo">
+    <header class="indigo darken-1 section">
+        <h2 class="center white-text">Ninja Wonga</h2>
+        <p class="flow-text grey-text center text-lighten-2"> Monthly Money Tracker
+        </p>
+    </header>
+    <div class="container section">
+        <div class="row">
+            <div class="col s12 m6">
+                <form class="card z-depth-0">
+                    <div class="card-content">
+
+                        <span class="card-title indigo-text">Add Item</span>
+                        <div class="input-field">
+                            <input type="text" id="name">
+                            <label for="name">Item Name</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="text" id="cost">
+                            <label for="cost">Cost ($)</label>
+                        </div>
+                        <div class="input-field center">
+                            <button class="btn-large pink white-text">Add Item</button>
+                        </div>
+                        <div class="input-field center">
+                            <p class="red-text" id="error">test</p>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="col s12 m5 push-m1">
+                <div class="canvas"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+<script>
+
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+        apiKey: "AIzaSyCeWdKLYT559AfrvjRHR91-UgZ8KuDVdxY",
+        authDomain: "d3-firebase-3ea5c.firebaseapp.com",
+        projectId: "d3-firebase-3ea5c",
+        storageBucket: "d3-firebase-3ea5c.appspot.com",
+        messagingSenderId: "176982331776",
+        appId: "1:176982331776:web:c4445e8cb2d44a79b7b165",
+        measurementId: "G-32MCQBF8HX"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+</script>
+<script src="https://d3js.org/d3.v5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script type="module" src="index.js" defer></script>
+<script type="module" src="graph.js" defer></script>
+
+
+</html>
