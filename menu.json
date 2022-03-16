@@ -18,5 +18,9 @@
     {
         "name": "veg burger",
         "orders": 1500
+    },
+    {
+        "name": "veg buns",
+        "orders": 590
     }
 ]
