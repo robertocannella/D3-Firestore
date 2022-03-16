@@ -31,6 +31,8 @@ const update = (data) => {
     const paths = graph.selectAll('path')
         .data(pie(data)) // pass data into pie generator
 
+
+    // handle update __modified__
     paths
         .attr('class', 'arc')
         .attr('d', arcPath) //  generate string as path 
@@ -38,6 +40,7 @@ const update = (data) => {
         .attr('stroke-width', '3px')
         .attr('fill', d => colorScale(d.data.name))
 
+    // handle __exit__
     paths.enter()
         .append('path')
         .attr('class', 'arc')
@@ -46,6 +49,7 @@ const update = (data) => {
         .attr('stroke-width', '3px')
         .attr('fill', d => colorScale(d.data.name))
 
+    // handle __exit__
     paths.exit().remove()
 
 }
