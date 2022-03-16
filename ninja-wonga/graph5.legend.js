@@ -24,7 +24,7 @@ const colorScale = d3.scaleOrdinal(d3['schemeSet3']) // output range
 // legend setup
 
 const legendGroup = svg.append('g')
-    .attr('transform', `translate(${dims.width + 40},20)`)
+    .attr('transform', `translate(${dims.width + 40},10)`)
 
 const legend = d3.legendColor()
     .shape('circle')
