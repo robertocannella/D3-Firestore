@@ -48,8 +48,6 @@ xAxisGroup.selectAll('text')
     .attr('text-anchor', 'end') // start|middle|end
     .attr('fill', '#121212')
 
-const t = d3.transition().duration(yScale(200)) // apply scale to balance short/long bars
-
 // ******************  UPDATE 
 const update = (data) => {
 
@@ -74,10 +72,9 @@ const update = (data) => {
         .attr('width', xScale.bandwidth) // ref to method
         .attr('x', d => xScale(d.name))
         .attr('fill', 'orange')
-    // Code below move to 'merge' function on __enter__
-    // .transition(t)
-    // .attr('height', d => graphHeight - yScale(d.orders)) // for Y-Top Starting Offset
-    // .attr('y', d => yScale(d.orders))
+        .transition().duration(yScale(200))
+        .attr('height', d => graphHeight - yScale(d.orders)) // for Y-Top Starting Offset
+        .attr('y', d => yScale(d.orders))
 
 
     // Now Append Remaining elements from __enter__
@@ -91,8 +88,8 @@ const update = (data) => {
         .attr('x', d => xScale(d.name))
         .attr('fill', 'orange')
         //ENDING Values
-        .merge(rects) // from this point all new rects and existing rects are merges.  transitions are for both
-        .transition(t)
+        .transition()
+        .duration(yScale(200)) // apply scale to balace short/long bars
         .delay((d, i, n) => i * 300)
         .attr('y', d => yScale(d.orders))
         .attr('height', d => graphHeight - yScale(d.orders)) // for Y-Top Starting Offset
