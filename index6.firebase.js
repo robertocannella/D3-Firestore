@@ -27,7 +27,6 @@ const yAxisGroup = graph.append('g');
 // Retrive data from FireStore 
 db.collection('dishes').get().then(res => {
 
-    // Store Firebase data into array:
     var data = []
 
     res.docs.forEach(doc => {

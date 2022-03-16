@@ -6,12 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script>
+
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyCeWdKLYT559AfrvjRHR91-UgZ8KuDVdxY",
+            authDomain: "d3-firebase-3ea5c.firebaseapp.com",
+            projectId: "d3-firebase-3ea5c",
+            storageBucket: "d3-firebase-3ea5c.appspot.com",
+            messagingSenderId: "176982331776",
+            appId: "1:176982331776:web:c4445e8cb2d44a79b7b165",
+            measurementId: "G-32MCQBF8HX"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+    </script>
 </head>
 
 <body>
     <div class="canvas"></div>
+
 </body>
+
 <script src="https://d3js.org/d3.v5.js"></script>
-<script src="./index.js"></script>
+<script type="module" src="index.js" defer></script>
 
 </html>
