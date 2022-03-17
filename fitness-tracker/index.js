@@ -25,6 +25,7 @@ btns.forEach(btn => {
         // set text content for activity
         formActivity.textContent = activity;
 
+        update(data) //from graph.js
     })
 })
 
@@ -48,6 +49,7 @@ form.addEventListener('submit', e => {
     else {
         error.textContent = 'Please enter a valid distance'
     }
+
 
 
 })

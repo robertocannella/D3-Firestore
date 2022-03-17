@@ -30,9 +30,32 @@ const yAxisGroup = graph.append('g')
 
 
 const update = (data) => {
+    // filter out irrelevant data
+    data = data.filter(item => item.activity == activity)  // keep true
+
     // set scale domains
     xScale.domain(d3.extent(data, d => new Date(d.date))); // returns earliest and latest date
     yScale.domain([0, d3.max(data, d => d.distance)]); // returns 0 and longest distance
+
+    // create points for
+    const circles = graph.selectAll('circle')
+        .data(data)
+
+    // address existing points
+    circles
+        .attr('cx', d => xScale(new Date(d.date))) // use date a X coord
+        .attr('cy', d => yScale(d.distance))  // use distance
+
+    // add new points 
+    circles.enter()
+        .append('circle')
+        .attr('r', 4)
+        .attr('cx', d => xScale(new Date(d.date))) // use date a X coord
+        .attr('cy', d => yScale(d.distance))  // use distance
+        .attr('fill', '#CCC')
+
+    // remove 
+    circles.exit().remove();
 
     // create the axes
     const xAxis = d3.axisBottom(xScale)
@@ -41,6 +64,7 @@ const update = (data) => {
     const yAxis = d3.axisLeft(yScale)
         .ticks(4)
         .tickFormat(d => d + 'm');
+
 
     // call the axes
     xAxisGroup.call(xAxis);
@@ -51,6 +75,9 @@ const update = (data) => {
     xAxisGroup.selectAll('text')
         .attr('transform', `rotate(-40)`)
         .attr('text-anchor', 'end');
+
+
+
 }
 // data and firestore
 
