@@ -29,7 +29,8 @@ const legendGroup = svg.append('g')
 const legend = d3.legendColor()
     .shape('circle')
     .shapePadding(10)
-    .scale(colorScale);
+    .scale(colorScale)
+
 
 
 
