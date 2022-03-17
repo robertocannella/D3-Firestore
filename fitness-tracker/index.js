@@ -1,12 +1,11 @@
 // grab DOM elements
 const btns = document.querySelectorAll('button');
-const forms = document.querySelectorAll('form');
+const form = document.querySelector('form');
 const formActivity = document.querySelector('form span');
 const input = document.querySelector('input');
 const error = document.querySelectorAll('.error');
 
 // Button Activity
-
 var activity = 'cycling'; //default
 btns.forEach(btn => {
     btn.addEventListener('click', event => {
@@ -28,3 +27,28 @@ btns.forEach(btn => {
 
     })
 })
+
+// Form Submit
+
+form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const distance = parseInt(input.value);
+    if (distance) {
+        db.collection('activities').add({
+            distance, // ES6 shortcut
+            activity,
+            data: new Date().toString()
+        }).then((e) => {
+            error.textContent = '';
+            input.value = '';
+
+        })
+    }
+    else {
+        error.textContent = 'Please enter a valid distance'
+    }
+
+
+})
+
