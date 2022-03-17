@@ -16,6 +16,17 @@ const graph = svg.append('g')
 const update = (data) => {
     console.log(data);
 }
+// Time & Linear Scales & Axes
+// X coordinates based on time scale. DOMAIN: earliest date, latest data / RANGE 0, graphWidth 
+// Y coordinates based on linear scale. DOMAIN:  0, maxDistance / RANGE  graphHeight, 0
+
+const xScale = d3.scaleTime().range(0, graphWidth);
+const yScale = d3.scaleLinear().range(graphHeight, 0); //domains are setup in the update function
+const xAxisGroup = graph.append('g')
+    .attr('class', 'xAxis')
+    .attr('transform', `translate(0,${graphHeight})`) // origin of axis is on top, translate to bottom
+const yAxisGroup = graph.append('g')
+    .attr('class', 'yAxis')
 
 // data and firestore
 
