@@ -31,6 +31,19 @@ const legend = d3.legendColor()
     .shapePadding(10)
     .scale(colorScale)
 
+// Tool Tips
+
+const tip = d3.tip()
+    .attr('class', 'card tip')
+    .html(d => {
+        let content = `<div class="name">${d.data.name}</div>`;
+        content += `<div class="cost">$${d.data.cost}</div>`;
+        content += `<div class="delete">Click to delete</div>`;
+        return content
+    });
+
+graph.call(tip);
+
 
 // UPDATE
 const update = (data) => {
@@ -74,9 +87,15 @@ const update = (data) => {
     // Add Events
 
     graph.selectAll('path')
-        .on('mouseover', handleMouseOver)
-        .on('mouseout', handleMouseOut)
-        .on('click', handleClick)
+        .on('mouseover', (d, i, n) => {
+            handleMouseOver(d, i, n);
+            tip.show(d, n[i]);
+        })
+        .on('mouseout', (d, i, n) => {
+            handleMouseOut(d, i, n);
+            tip.hide();
+        })
+        .on('click', handleClick);
 
     paths.exit()
         .transition()
