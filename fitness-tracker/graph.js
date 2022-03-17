@@ -13,24 +13,37 @@ const graph = svg.append('g')
     .attr('height', graphHeight)
     .attr('transform', `translate(${margin.left},${margin.top})`)
 
-const update = (data) => {
-    console.log(data);
-}
+
 // Time & Linear Scales & Axes
 // X coordinates based on time scale. DOMAIN: earliest date, latest data / RANGE 0, graphWidth 
 // Y coordinates based on linear scale. DOMAIN:  0, maxDistance / RANGE  graphHeight, 0
 
-const xScale = d3.scaleTime().range(0, graphWidth);
-const yScale = d3.scaleLinear().range(graphHeight, 0); //domains are setup in the update function
+const xScale = d3.scaleTime().range([0, graphWidth]); // Range Takes An Array!
+const yScale = d3.scaleLinear().range([graphHeight, 0]); //domains are setup in the update function
 const xAxisGroup = graph.append('g')
     .attr('class', 'xAxis')
     .attr('transform', `translate(0,${graphHeight})`) // origin of axis is on top, translate to bottom
 const yAxisGroup = graph.append('g')
     .attr('class', 'yAxis')
 
+
+
+const update = (data) => {
+    // set scale domains
+    xScale.domain(d3.extent(data, d => new Date(d.date))); // returns earliest and latest date
+    yScale.domain([0, d3.max(data, d => d.distance)]); // returns 0 and longest distance
+
+    // create the axes
+    const xAxis = d3.axisBottom(xScale).ticks(4);
+    const yAxis = d3.axisLeft(yScale).ticks(4);
+
+    // call the axes
+    xAxisGroup.call(xAxis);
+    yAxisGroup.call(yAxis);
+}
 // data and firestore
 
-data = [];
+var data = [];
 
 db.collection('activities').onSnapshot(res => {
     res.docChanges().forEach(change => {
@@ -50,8 +63,8 @@ db.collection('activities').onSnapshot(res => {
             default: // default case required
                 break;
         }
-    })
+    });
     update(data);
-})
+});
 
 // 

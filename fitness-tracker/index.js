@@ -38,7 +38,7 @@ form.addEventListener('submit', e => {
         db.collection('activities').add({
             distance, // ES6 shortcut
             activity,
-            data: new Date().toString()
+            date: new Date().toString()
         }).then((e) => {
             error.textContent = '';
             input.value = '';
