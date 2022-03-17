@@ -36,7 +36,7 @@ form.addEventListener('submit', e => {
     const distance = parseInt(input.value);
     if (distance) {
         db.collection('activities').add({
-            distance, // ES6 shortcut
+            distance, // ES6 shortcut (same name variables)
             activity,
             date: new Date().toString()
         }).then((e) => {
